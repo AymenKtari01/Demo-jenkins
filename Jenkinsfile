@@ -4,7 +4,7 @@ pipeline {
         SERVER_CREDENTIALS=credentials('Github-Credentials')
     }
     parameters{
-        choice(name :'VERSION' , defaultValue : '1.0.0' , choices : ['1.0.0' , '1.0.1' , '1.1.0' , '2.0.1' ] ) 
+        choice(name :'VERSION' , choices : ['1.0.0' , '1.0.1' , '1.1.0' , '2.0.1' ] , description : 'choose the version to be deployed ' ) 
         booleanParam(name: 'executeTests' , defaultValue: true , description: 'this parameter decides wether the tests will be executed or not ' ) 
     }
     stages {
