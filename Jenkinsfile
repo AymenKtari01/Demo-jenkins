@@ -1,3 +1,4 @@
+def gv 
 pipeline {
     agent any
     environment {
@@ -8,11 +9,18 @@ pipeline {
         booleanParam(name: 'executeTests' , defaultValue: true , description: 'this parameter decides wether the tests will be executed or not ' ) 
     }
     stages {
+        stage('Init') {
+            steps {
+                script{
+                    gv=load('script.groovy')
+                }
+            }
+        }
         stage('Build') {
             steps {
-                echo 'Building...'
-                echo "github credentials: ${SERVER_CREDENTIALS} "
-                // Example: sh 'mvn clean package'
+                script{
+                    gv.buildApp()
+                }
             }
         }
         stage('Test') {
@@ -22,15 +30,16 @@ pipeline {
                 }
             }
             steps {
-                echo 'Testing...'
-                // Example: sh 'mvn test'
+                script{
+                    gv.testApp()
+                }
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying...'
-                echo " deploied version : ${params.VERSION} " 
-                // Example: sh 'scp target/*.jar user@server:/path/to/deploy'
+                script{
+                    gv.deployApp()
+                }
             }
         }
     }
