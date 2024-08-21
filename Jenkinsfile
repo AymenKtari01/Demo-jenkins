@@ -3,7 +3,7 @@ pipeline {
     environment {
         SERVER_CREDENTIALS=credentials('Github-Credentials')
     }
-    params{
+    parameters{
         booleanParam(name='executeTests' , defaultValue=false , description='this parameter decides wether the tests will be executed or not ' ) 
     }
     stages {
