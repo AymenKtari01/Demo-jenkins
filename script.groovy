@@ -9,7 +9,7 @@ def testApp() {
 
 def deployApp() {
     echo 'Deploying...'
-    echo " deploied version : ${params.VERSION} " 
+    echo " deploying version : ${params.VERSION} " 
 }
 
 return this 
