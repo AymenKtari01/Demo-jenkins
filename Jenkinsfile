@@ -4,6 +4,7 @@ pipeline {
         SERVER_CREDENTIALS=credentials('Github-Credentials')
     }
     parameters{
+        choice(name :'VERSION' , defaultValue : '1.0.0' , choices : ['1.0.0' , '1.0.1' , '1.1.0' , '2.0.1' ] ) 
         booleanParam(name: 'executeTests' , defaultValue: true , description: 'this parameter decides wether the tests will be executed or not ' ) 
     }
     stages {
@@ -28,6 +29,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
+                echo " deploied version : ${params.VERSION} " 
                 // Example: sh 'scp target/*.jar user@server:/path/to/deploy'
             }
         }
