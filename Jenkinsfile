@@ -1,10 +1,13 @@
 pipeline {
     agent any
-
+    environment {
+        SERVER_CREDENTIALS=credentials('Github-Credentials')
+    }
     stages {
         stage('Build') {
             steps {
                 echo 'Building...'
+                echo "github credentials: ${SERVER_CREDENTIALS} "
                 // Example: sh 'mvn clean package'
             }
         }
