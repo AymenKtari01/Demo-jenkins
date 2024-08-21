@@ -3,6 +3,9 @@ pipeline {
     environment {
         SERVER_CREDENTIALS=credentials('Github-Credentials')
     }
+    params{
+        booleanParam(name='executeTests' , defaultValue=false , description='this parameter decides wether the tests will be executed or not ' ) 
+    }
     stages {
         stage('Build') {
             steps {
@@ -12,6 +15,11 @@ pipeline {
             }
         }
         stage('Test') {
+            when {
+                expression {
+                    params.executeTests
+                }
+            }
             steps {
                 echo 'Testing...'
                 // Example: sh 'mvn test'
