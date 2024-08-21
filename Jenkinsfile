@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                echo "github credentials: ${SERVER_CREDENTIALS_PSW} "
+                echo "github credentials: ${SERVER_CREDENTIALS} "
                 // Example: sh 'mvn clean package'
             }
         }
