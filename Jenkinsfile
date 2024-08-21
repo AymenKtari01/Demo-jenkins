@@ -4,7 +4,7 @@ pipeline {
         SERVER_CREDENTIALS=credentials('Github-Credentials')
     }
     parameters{
-        booleanParam(name: 'executeTests' , defaultValue: false , description: 'this parameter decides wether the tests will be executed or not ' ) 
+        booleanParam(name: 'executeTests' , defaultValue: true , description: 'this parameter decides wether the tests will be executed or not ' ) 
     }
     stages {
         stage('Build') {
